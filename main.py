@@ -17,6 +17,7 @@ from pathlib import Path
 
 import pandas as pd
 
+from extracao.validar_input import validar_ou_abortar
 from previsoes.previsao_unificada import gerar_previsoes, salvar_previsao_local
 from treinadores.treinar_xgboost import treinar_todos_por_unidade
 
@@ -83,6 +84,8 @@ if __name__ == "__main__":
     df = pd.read_csv(CAMINHO_BASE_UNIDADES, parse_dates=["ds"])
     df["ds"] = pd.to_datetime(df["ds"], errors="coerce")
     print(f"[OK] {len(df):,} registros carregados | período: {df['ds'].min().date()} → {df['ds'].max().date()}")
+
+    validar_ou_abortar(df, por_unidade=True)
 
     print("\n==============================")
     print("  TREINAMENTO XGBOOST         ")

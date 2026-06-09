@@ -290,6 +290,41 @@ def _avaliar_candidato(
 
 
 # ---------------------------------------------------------------------------
+# Relatório de overfitting
+# ---------------------------------------------------------------------------
+
+def _relatorio_overfitting(
+    modelo: XGBRegressor,
+    X: pd.DataFrame,
+    y: pd.Series,
+    alvo: str,
+    janela_teste: int = 30,
+) -> None:
+    """
+    Compara MAE no treino vs MAE nos últimos 30 dias (nunca vistos no treino final).
+    Alerta se o modelo memorizou os dados em vez de generalizar.
+    """
+    if len(X) <= janela_teste:
+        return
+
+    X_treino, X_teste = X.iloc[:-janela_teste], X.iloc[-janela_teste:]
+    y_treino, y_teste = y.iloc[:-janela_teste], y.iloc[-janela_teste:]
+
+    mae_treino = mean_absolute_error(y_treino, modelo.predict(X_treino))
+    mae_teste  = mean_absolute_error(y_teste,  modelo.predict(X_teste))
+    ratio      = mae_teste / mae_treino if mae_treino > 0 else float("inf")
+
+    print(f"   [OVERFITTING] {alvo.upper()}: MAE treino={mae_treino:,.0f} | MAE teste={mae_teste:,.0f} | ratio={ratio:.2f}")
+
+    if ratio > 3.0:
+        print(f"   [ALERTA] Ratio > 3.0 — possível overfitting. Considere mais regularização.")
+    elif ratio > 1.5:
+        print(f"   [AVISO]  Ratio > 1.5 — generalização moderada.")
+    else:
+        print(f"   [OK]     Modelo generaliza bem (ratio <= 1.5).")
+
+
+# ---------------------------------------------------------------------------
 # Treinamento principal
 # ---------------------------------------------------------------------------
 
@@ -332,6 +367,9 @@ def treinar_modelo(
         params_finais = {**melhor["params"], "n_estimators": melhor["n_est"]}
         modelo_final = XGBRegressor(**params_finais)
         modelo_final.fit(X, y)
+
+    # Relatório de overfitting: MAE treino vs MAE teste (últimos 30 dias)
+    _relatorio_overfitting(modelo_final, X, y, alvo)
 
     os.makedirs("modelos", exist_ok=True)
     caminho = f"modelos/{nome_modelo}.pkl"
