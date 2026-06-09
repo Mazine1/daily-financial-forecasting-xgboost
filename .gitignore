@@ -1,0 +1,37 @@
+# Variáveis de ambiente (nunca commitar)
+.env
+.env.local
+
+# Modelos treinados
+modelos/*.pkl
+
+# Dados gerados/reais
+dados/base_diaria.csv
+dados/base_diaria_unidades.csv
+
+# Histórico de previsões gerado
+previsoes/historico_previsoes.csv
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Jupyter
+.ipynb_checkpoints/
+
+# OS
+.DS_Store
+Thumbs.db
