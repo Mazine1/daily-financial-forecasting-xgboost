@@ -1,5 +1,10 @@
 # Daily Financial Forecasting with XGBoost — Mazine IA & DATA
 
+![Python](https://img.shields.io/badge/Python-3.11+-blue?logo=python&logoColor=white)
+![XGBoost](https://img.shields.io/badge/XGBoost-2.0+-orange?logo=xgboost)
+![License](https://img.shields.io/badge/License-MIT-green)
+![Status](https://img.shields.io/badge/Status-Production-brightgreen)
+
 A production-ready system for **daily revenue and expense forecasting per business unit**, with a 60-day ahead horizon. Built by **Mazine IA & DATA** using XGBoost with time series cross-validation, iterative forecasting, and full calendar feature engineering.
 
 > This portfolio repository uses **100% synthetic data** — no real client data or internal credentials are present.
