@@ -193,4 +193,4 @@ python-dotenv >= 1.0
 
 ---
 
-*Developed by [Mazine IA & DATA](https://github.com/seu-usuario)*
+*Developed by [Mazine IA & DATA](https://github.com/MazineIA)*
