@@ -2,6 +2,7 @@
 
 ![Python](https://img.shields.io/badge/Python-3.11+-blue?logo=python&logoColor=white)
 ![XGBoost](https://img.shields.io/badge/XGBoost-2.0+-orange?logo=xgboost)
+![Streamlit](https://img.shields.io/badge/Streamlit-1.35+-red?logo=streamlit&logoColor=white)
 ![License](https://img.shields.io/badge/License-MIT-green)
 ![Status](https://img.shields.io/badge/Status-Production-brightgreen)
 
@@ -26,6 +27,7 @@ This project was developed, validated, and is currently running in a live produc
 ```
 previsao_financeira/
 ├── main.py                          # Main pipeline
+├── app.py                           # Streamlit interactive dashboard
 ├── generate_sample_data.py          # Synthetic data generator
 ├── eda.ipynb                        # Exploratory Data Analysis notebook
 ├── requirements.txt
@@ -117,7 +119,20 @@ The pipeline will:
 5. Save results to `previsoes/historico_previsoes.csv`
 6. *(Optional)* Send to database — set `ENVIAR_DB = True` in `main.py`
 
-### Step 3 — Explore the EDA notebook
+### Step 3 — Launch the Streamlit dashboard
+
+```bash
+streamlit run app.py
+```
+
+Opens a visual dashboard in the browser with:
+- Interactive 60-day forecast chart (Revenue, Expense, Balance)
+- Unit selector (individual units or TOTAL)
+- Backtesting view — Predicted vs Actual with MAE and MAPE
+- Weekly and monthly seasonality charts
+- Detailed forecast table
+
+### Step 4 — Explore the EDA notebook
 
 ```bash
 jupyter notebook eda.ipynb
