@@ -6,6 +6,8 @@
 ![License](https://img.shields.io/badge/License-MIT-green)
 ![Status](https://img.shields.io/badge/Status-Production-brightgreen)
 
+**[▶ Live Demo — daily-financial-forecasting-xgboost.streamlit.app](https://daily-financial-forecasting-xgboost.streamlit.app)**
+
 A production-ready system for **daily revenue and expense forecasting per business unit**, with a 60-day ahead horizon. Built by **Mazine IA & DATA** using XGBoost with time series cross-validation, iterative forecasting, and full calendar feature engineering.
 
 > This portfolio repository uses **100% synthetic data** — no real client data or internal credentials are present.
